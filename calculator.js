@@ -1,3 +1,19 @@
+const display = document.querySelector('#display');
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (button.textContent === 'C') {
+            display.innerHTML = '';
+        } else if (button.textContent === '=') {
+            console.log('Not implemented');
+        } else {
+            display.textContent+=button.textContent;
+        }
+    })
+})
+
+
 function add(number1,number2) {
     return number1+number2;
 }
