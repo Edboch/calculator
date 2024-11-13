@@ -1,16 +1,34 @@
-function add(a,b) {
-    return a+b;
+function add(number1,number2) {
+    return number1+number2;
 }
 
-function subtract(a,b) {
-    return a-b;
+function subtract(number1,number2) {
+    return number1-number2;
 }
 
-function multiply(a,b) {
-    return a*b;
+function multiply(number1,number2) {
+    return number1*number2;
 }
 
-function divide(a,b) {
-    return a/b;
+function divide(number1,number2) {
+    return number1/number2;
 }
 
+function operate(op,number1,number2) {
+    switch (op) {
+        case '+':
+            add(number1,number2);
+            break
+        case '-':
+            subtract(number1,number2);
+            break
+        case '*':
+            multiply(number1,number2);
+            break
+        case '/':
+            divide(number1,number2);
+            break
+        default:
+            console.warn('The operator is invalid!')
+    }
+}
