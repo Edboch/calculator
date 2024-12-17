@@ -15,6 +15,9 @@ buttons.forEach((button) => {
                 secondValStarted = false;
                 break
             case '=':
+                if (!resultHolder && !operator && !secondValStarted) {
+                    break;
+                }
                 let secondNum = parseFloat(display.textContent);
                 let result = operate(operator,resultHolder,secondNum);
                 display.textContent = (isNaN(result))?'Haha':result;
