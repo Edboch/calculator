@@ -15,7 +15,7 @@ buttons.forEach((button) => {
                 secondValStarted = false;
                 break
             case '=':
-                let secondNum = parseInt(display.textContent);
+                let secondNum = parseFloat(display.textContent);
                 let result = operate(operator,resultHolder,secondNum);
                 display.textContent = (isNaN(result))?'Haha':result;
                 resultHolder = null;
@@ -30,12 +30,12 @@ buttons.forEach((button) => {
                     // User has pressed the operator button for the second time
                     // this case evaluates the first calculation
                     // e.g 2+2+ --> 10+
-                    let secondNum = parseInt(display.textContent);
+                    let secondNum = parseFloat(display.textContent);
                     resultHolder = operate(operator,resultHolder,secondNum)
                     display.textContent = resultHolder;
                     secondValStarted = false;
                 } else {
-                    resultHolder = parseInt(display.textContent);
+                    resultHolder = parseFloat(display.textContent);
                 }
                 operator = content;
                 break
