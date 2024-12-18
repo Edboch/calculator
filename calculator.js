@@ -10,7 +10,7 @@ buttons.forEach((button) => {
         let content = button.textContent;
         switch (content) {
             case 'C':
-                prevInput.textContent = '-';
+                prevInput.innerHTML = '&emsp;';
                 input.innerHTML = '0';
                 resultHolder = null;
                 operator = null;
@@ -23,7 +23,7 @@ buttons.forEach((button) => {
                 let secondNum = parseFloat(input.textContent);
                 let result = operate(operator,resultHolder,secondNum);
                 input.textContent = (isNaN(result))?'Haha':result;
-                prevInput.textContent = '-';
+                prevInput.innerHTML = '&emsp;';
                 resultHolder = null;
                 operator = null;
                 secondValStarted = false;
@@ -43,12 +43,12 @@ buttons.forEach((button) => {
                 } else {
                     resultHolder = parseFloat(input.textContent);
                 }
+                prevInput.textContent = resultHolder;
                 operator = content;
                 break
             default:
                 if (operator && !secondValStarted){
                     input.textContent = content;
-                    prevInput.textContent = resultHolder;
                     secondValStarted = true;
                 } else if (input.textContent === '0') {
                     input.textContent = content;
