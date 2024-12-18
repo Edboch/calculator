@@ -1,4 +1,5 @@
-const display = document.querySelector('#display');
+const input = document.querySelector('.input');
+const prevInput = document.querySelector('.previous-input');
 const buttons = document.querySelectorAll('button');
 let resultHolder = null;
 let operator = null;
@@ -9,7 +10,8 @@ buttons.forEach((button) => {
         let content = button.textContent;
         switch (content) {
             case 'C':
-                display.innerHTML = '0';
+                prevInput.textContent = '-';
+                input.innerHTML = '0';
                 resultHolder = null;
                 operator = null;
                 secondValStarted = false;
@@ -18,9 +20,10 @@ buttons.forEach((button) => {
                 if (!resultHolder && !operator && !secondValStarted) {
                     break;
                 }
-                let secondNum = parseFloat(display.textContent);
+                let secondNum = parseFloat(input.textContent);
                 let result = operate(operator,resultHolder,secondNum);
-                display.textContent = (isNaN(result))?'Haha':result;
+                input.textContent = (isNaN(result))?'Haha':result;
+                prevInput.textContent = '-';
                 resultHolder = null;
                 operator = null;
                 secondValStarted = false;
@@ -33,23 +36,24 @@ buttons.forEach((button) => {
                     // User has pressed the operator button for the second time
                     // this case evaluates the first calculation
                     // e.g 2+2+ --> 10+
-                    let secondNum = parseFloat(display.textContent);
+                    let secondNum = parseFloat(input.textContent);
                     resultHolder = operate(operator,resultHolder,secondNum)
-                    display.textContent = resultHolder;
+                    input.textContent = resultHolder;
                     secondValStarted = false;
                 } else {
-                    resultHolder = parseFloat(display.textContent);
+                    resultHolder = parseFloat(input.textContent);
                 }
                 operator = content;
                 break
             default:
                 if (operator && !secondValStarted){
-                    display.textContent = content;
+                    input.textContent = content;
+                    prevInput.textContent = resultHolder;
                     secondValStarted = true;
-                } else if (display.textContent === '0') {
-                    display.textContent = content;
+                } else if (input.textContent === '0') {
+                    input.textContent = content;
                 } else {
-                    display.textContent+=content;
+                    input.textContent+=content;
                 }
         }
     })
